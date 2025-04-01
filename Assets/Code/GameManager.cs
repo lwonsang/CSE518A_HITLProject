@@ -37,7 +37,10 @@ public class GameManager : MonoBehaviour
     private float fullWidth;
     [Header("Fifth Round")]
     public GameObject panelFinalRound;
-
+    public static GameManager Instance;
+    private bool skipWaiting = false;
+    private bool blueSubmitted = false;
+    private bool redSubmitted = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,12 +53,25 @@ public class GameManager : MonoBehaviour
     {
         
     }
+    void Awake()
+    {
+        Instance = this;
+    }
+    public void OnPlayerFinished(PlayerSelectionController.Player player)
+    {
+        Debug.Log($"{player} finished answering.");
+    }
+    public void RecordPlayerAnswer(PlayerSelectionController.Player player, int questionIndex, List<int> selectedIndices)
+    {
+
+    }
     IEnumerator Countdown(float duration)
     {
         float timeLeft = duration;
 
         while (timeLeft > 0f)
         {
+            if (skipWaiting) break;
             timeLeft -= Time.deltaTime;
             float t = Mathf.Clamp01(timeLeft / duration);
             timerBarFill.sizeDelta = new Vector2(fullWidth * t, timerBarFill.sizeDelta.y);
@@ -63,6 +79,18 @@ public class GameManager : MonoBehaviour
         }
 
         timerBarFill.sizeDelta = new Vector2(0f, timerBarFill.sizeDelta.y);
+    }
+    IEnumerator WaitWithSkip(float seconds)
+    {
+        float timeLeft = seconds;
+        skipWaiting = false;
+
+        while (timeLeft > 0f)
+        {
+            if (skipWaiting) break;
+            timeLeft -= Time.deltaTime;
+            yield return null;
+        }
     }
     IEnumerator GameFlow()
     {
@@ -72,7 +100,8 @@ public class GameManager : MonoBehaviour
             ShowOnly(panelRoundIntro);
             roundNumberText.text = $"Round {currentRound}";
             StartCoroutine(Countdown(2f));
-            yield return new WaitForSeconds(2f);
+            yield return WaitWithSkip(2f);
+            skipWaiting = false;
 
             if (currentRound < maxRounds)
             {
@@ -81,46 +110,58 @@ public class GameManager : MonoBehaviour
                     currentState = GameState.BlueTurn;
                     ShowOnly(panelBlueTurn);
                     Debug.Log("Blue Player Turn");
+                    panelBlueTurn.GetComponentInChildren<PlayerSelectionController>().SetPlayer(PlayerSelectionController.Player.Blue);
                     StartCoroutine(Countdown(15f));
-                    yield return new WaitForSeconds(15f);
+                    yield return WaitWithSkip(15f);
+                    skipWaiting = false;
 
                     currentState = GameState.RedTurn;
                     ShowOnly(panelRedTurn);
                     Debug.Log("Red Player Turn");
+                    panelRedTurn.GetComponentInChildren<PlayerSelectionController>().SetPlayer(PlayerSelectionController.Player.Red);
                     StartCoroutine(Countdown(15f));
-                    yield return new WaitForSeconds(15f);
+                    yield return WaitWithSkip(15f);
+                    skipWaiting = false;
                 }
                 else
                 {
                     currentState = GameState.RedTurn;
                     ShowOnly(panelRedTurn);
                     Debug.Log("Red Player Turn");
+                    panelRedTurn.GetComponentInChildren<PlayerSelectionController>().SetPlayer(PlayerSelectionController.Player.Red);
                     StartCoroutine(Countdown(15f));
-                    yield return new WaitForSeconds(15f);
+                    yield return WaitWithSkip(15f);
+                    skipWaiting = false;
 
                     currentState = GameState.BlueTurn;
                     ShowOnly(panelBlueTurn);
                     Debug.Log("Blue Player Turn");
+                    panelBlueTurn.GetComponentInChildren<PlayerSelectionController>().SetPlayer(PlayerSelectionController.Player.Blue);
                     StartCoroutine(Countdown(15f));
-                    yield return new WaitForSeconds(15f);
+                    yield return WaitWithSkip(15f);
+                    skipWaiting = false;
                 }
 
                 blueGoesFirst = !blueGoesFirst;
             }
             else
             {
+                blueSubmitted = false;
+                redSubmitted = false;
                 currentState = GameState.FinalRound;
                 ShowOnly(panelFinalRound);
                 Debug.Log("Final Round - Both Players");
                 StartCoroutine(Countdown(30f));
-                yield return new WaitForSeconds(30f);
+                yield return WaitWithSkip(30f);
+                skipWaiting = false;
             }
 
             currentState = GameState.RoundResult;
             ShowOnly(panelRoundResult);
             scoresText.text = $"Blue: XX% | Red: XX%";
             StartCoroutine(Countdown(3f));
-            yield return new WaitForSeconds(3f);
+            yield return WaitWithSkip(3f);
+            skipWaiting = false;
 
             currentRound++;
         }
@@ -128,7 +169,36 @@ public class GameManager : MonoBehaviour
         currentState = GameState.GameOver;
         Debug.Log("Game Over. Show final results here.");
     }
+    public void ForceEndTurn(PlayerSelectionController.Player who)
+    {
+        //StopAllCoroutines();
+        //timerBarFill.sizeDelta = new Vector2(0f, timerBarFill.sizeDelta.y);
+        if (who == PlayerSelectionController.Player.Blue)
+            blueSubmitted = true;
+        else if (who == PlayerSelectionController.Player.Red)
+            redSubmitted = true;
 
+        if (currentRound == maxRounds)
+        {
+            if (blueSubmitted && redSubmitted)
+            {
+                skipWaiting = true;
+            }
+        }
+        else
+        {
+            skipWaiting = true;
+        }
+        //StartCoroutine(ContinueAfterTurn(player));
+    }
+
+    IEnumerator ContinueAfterTurn(PlayerSelectionController.Player player)
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        OnPlayerFinished(player);
+    }
+    
     void ShowOnly(GameObject targetPanel)
     {
         panelRoundIntro.SetActive(false);
