@@ -41,6 +41,22 @@ public class GameManager : MonoBehaviour
     private bool skipWaiting = false;
     private bool blueSubmitted = false;
     private bool redSubmitted = false;
+
+    public QuestionGenerator questionGenerator;
+
+    [Header("Question UI")]
+    //public TMP_Text questionLabelText;
+    public TMP_Text blueLabelText;
+    public TMP_Text redLabelText;
+    public TMP_Text finalBlueLabelText;
+    public TMP_Text finalRedLabelText;
+    public List<Image> blueImages;
+    public List<Image> redImages;
+    public List<Image> finalBlueImages;
+    public List<Image> finalRedImages;
+    private Question currentQuestion;
+    private List<Question> blueQuestions;
+    private List<Question> redQuestions;
     // Start is called before the first frame update
     void Start()
     {
@@ -102,23 +118,32 @@ public class GameManager : MonoBehaviour
             StartCoroutine(Countdown(2f));
             yield return WaitWithSkip(2f);
             skipWaiting = false;
-
+            int questionsThisRound = (currentRound == maxRounds) ? 10 : 5;
+            List<Question> blueQuestions = new List<Question>();
+            List<Question> redQuestions = new List<Question>();
+            for (int i = 0; i < questionsThisRound; i++)
+            {
+                blueQuestions.Add(questionGenerator.GenerateQuestion());
+                redQuestions.Add(questionGenerator.GenerateQuestion());
+            }
             if (currentRound < maxRounds)
             {
                 if (blueGoesFirst)
                 {
                     currentState = GameState.BlueTurn;
                     ShowOnly(panelBlueTurn);
+                    //DisplayQuestion();
                     Debug.Log("Blue Player Turn");
-                    panelBlueTurn.GetComponentInChildren<PlayerSelectionController>().SetPlayer(PlayerSelectionController.Player.Blue);
+                    panelBlueTurn.GetComponentInChildren<PlayerSelectionController>().SetPlayer(PlayerSelectionController.Player.Blue, blueQuestions);
                     StartCoroutine(Countdown(15f));
                     yield return WaitWithSkip(15f);
                     skipWaiting = false;
 
                     currentState = GameState.RedTurn;
                     ShowOnly(panelRedTurn);
+                    //DisplayQuestion();
                     Debug.Log("Red Player Turn");
-                    panelRedTurn.GetComponentInChildren<PlayerSelectionController>().SetPlayer(PlayerSelectionController.Player.Red);
+                    panelRedTurn.GetComponentInChildren<PlayerSelectionController>().SetPlayer(PlayerSelectionController.Player.Red, redQuestions);
                     StartCoroutine(Countdown(15f));
                     yield return WaitWithSkip(15f);
                     skipWaiting = false;
@@ -127,16 +152,18 @@ public class GameManager : MonoBehaviour
                 {
                     currentState = GameState.RedTurn;
                     ShowOnly(panelRedTurn);
+                    //DisplayQuestion();
                     Debug.Log("Red Player Turn");
-                    panelRedTurn.GetComponentInChildren<PlayerSelectionController>().SetPlayer(PlayerSelectionController.Player.Red);
+                    panelRedTurn.GetComponentInChildren<PlayerSelectionController>().SetPlayer(PlayerSelectionController.Player.Red, redQuestions);
                     StartCoroutine(Countdown(15f));
                     yield return WaitWithSkip(15f);
                     skipWaiting = false;
 
                     currentState = GameState.BlueTurn;
                     ShowOnly(panelBlueTurn);
+                    //DisplayQuestion();
                     Debug.Log("Blue Player Turn");
-                    panelBlueTurn.GetComponentInChildren<PlayerSelectionController>().SetPlayer(PlayerSelectionController.Player.Blue);
+                    panelBlueTurn.GetComponentInChildren<PlayerSelectionController>().SetPlayer(PlayerSelectionController.Player.Blue, blueQuestions);
                     StartCoroutine(Countdown(15f));
                     yield return WaitWithSkip(15f);
                     skipWaiting = false;
@@ -150,7 +177,10 @@ public class GameManager : MonoBehaviour
                 redSubmitted = false;
                 currentState = GameState.FinalRound;
                 ShowOnly(panelFinalRound);
+                //DisplayQuestion();
                 Debug.Log("Final Round - Both Players");
+                panelFinalRound.GetComponentsInChildren<PlayerSelectionController>()[0].SetPlayer(PlayerSelectionController.Player.Blue, blueQuestions);
+                panelFinalRound.GetComponentsInChildren<PlayerSelectionController>()[1].SetPlayer(PlayerSelectionController.Player.Red, redQuestions);
                 StartCoroutine(Countdown(30f));
                 yield return WaitWithSkip(30f);
                 skipWaiting = false;
@@ -209,4 +239,66 @@ public class GameManager : MonoBehaviour
         if (targetPanel != null)
             targetPanel.SetActive(true);
     }
+
+    public void DisplayQuestion()
+    {
+        currentQuestion = questionGenerator.GenerateQuestion();
+
+        if (currentState == GameState.BlueTurn)
+        {
+            blueLabelText.text = "Select all that match: " + currentQuestion.label;
+            for (int i = 0; i < 9; i++)
+            {
+                if (i < currentQuestion.images.Count)
+                {
+                    blueImages[i].sprite = currentQuestion.images[i];
+                    blueImages[i].gameObject.SetActive(true);
+                }
+                else
+                {
+                    blueImages[i].gameObject.SetActive(false);
+                }
+            }
+        }
+        else if (currentState == GameState.RedTurn)
+        {
+            redLabelText.text = "Select all that match: " + currentQuestion.label;
+            for (int i = 0; i < 9; i++)
+            {
+                if (i < currentQuestion.images.Count)
+                {
+                    redImages[i].sprite = currentQuestion.images[i];
+                    redImages[i].gameObject.SetActive(true);
+                }
+                else
+                {
+                    redImages[i].gameObject.SetActive(false);
+                }
+            }
+        }
+        else if (currentState == GameState.FinalRound)
+        {
+            finalBlueLabelText.text = "Select all that match: " + currentQuestion.label;
+            finalRedLabelText.text = "Select all that match: " + currentQuestion.label;
+
+            for (int i = 0; i < 9; i++)
+            {
+                if (i < currentQuestion.images.Count)
+                {
+                    finalBlueImages[i].sprite = currentQuestion.images[i];
+                    finalBlueImages[i].gameObject.SetActive(true);
+
+                    finalRedImages[i].sprite = currentQuestion.images[i];
+                    finalRedImages[i].gameObject.SetActive(true);
+                }
+                else
+                {
+                    finalBlueImages[i].gameObject.SetActive(false);
+                    finalRedImages[i].gameObject.SetActive(false);
+                }
+            }
+        }
+    }
+
+
 }

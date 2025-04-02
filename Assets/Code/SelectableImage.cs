@@ -6,10 +6,12 @@ public class SelectableImage : MonoBehaviour
 {
     private Vector3 originalScale;
     private bool isSelected = false;
+    private Image image;
 
     void Start()
     {
         originalScale = transform.localScale;
+        image = GetComponent<Image>();
     }
 
     public void ToggleSelection()

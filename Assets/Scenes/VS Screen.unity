@@ -916,7 +916,7 @@ MonoBehaviour:
   - {fileID: 2007339117}
   - {fileID: 9345978}
   currentPlayer: 0
-  questionsPerRound: 5
+  questionsPerRound: 10
 --- !u!1 &210650649
 GameObject:
   m_ObjectHideFlags: 0
@@ -2855,7 +2855,7 @@ GameObject:
   - component: {fileID: 801106756}
   - component: {fileID: 801106755}
   m_Layer: 5
-  m_Name: ImageGrid_Blue
+  m_Name: ImageGrid_Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4317,7 +4317,7 @@ GameObject:
   - component: {fileID: 1139806380}
   - component: {fileID: 1139806379}
   m_Layer: 5
-  m_Name: ImageGrid_Blue
+  m_Name: ImageGrid_Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5943,6 +5943,51 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1537378428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1537378430}
+  - component: {fileID: 1537378429}
+  m_Layer: 0
+  m_Name: QuestionGeneratorObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1537378429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537378428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8a1d77287239664d87c27d0010388f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  labels: []
+--- !u!4 &1537378430
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537378428}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 369.9253, y: 201.1168, z: -0.4920497}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1572055417
 GameObject:
   m_ObjectHideFlags: 0
@@ -6697,7 +6742,7 @@ MonoBehaviour:
   - {fileID: 440138244}
   - {fileID: 134421710}
   currentPlayer: 1
-  questionsPerRound: 5
+  questionsPerRound: 10
 --- !u!1 &1998683746
 GameObject:
   m_ObjectHideFlags: 0
@@ -6750,6 +6795,51 @@ MonoBehaviour:
   scoresText: {fileID: 75998075}
   timerBarFill: {fileID: 523617286}
   panelFinalRound: {fileID: 1518210975}
+  questionGenerator: {fileID: 1537378429}
+  blueLabelText: {fileID: 1700407847}
+  redLabelText: {fileID: 518433091}
+  finalBlueLabelText: {fileID: 952336328}
+  finalRedLabelText: {fileID: 1589050665}
+  blueImages:
+  - {fileID: 612812181}
+  - {fileID: 1522990686}
+  - {fileID: 534168870}
+  - {fileID: 1203108590}
+  - {fileID: 210650651}
+  - {fileID: 905840001}
+  - {fileID: 140119076}
+  - {fileID: 601691579}
+  - {fileID: 1626022999}
+  redImages:
+  - {fileID: 1572055420}
+  - {fileID: 1380813013}
+  - {fileID: 966560511}
+  - {fileID: 937764620}
+  - {fileID: 253762107}
+  - {fileID: 1455927205}
+  - {fileID: 634741832}
+  - {fileID: 930210199}
+  - {fileID: 2037651782}
+  finalBlueImages:
+  - {fileID: 250399707}
+  - {fileID: 1013395996}
+  - {fileID: 1108235150}
+  - {fileID: 1635581676}
+  - {fileID: 973149965}
+  - {fileID: 1319503424}
+  - {fileID: 655398976}
+  - {fileID: 2007339118}
+  - {fileID: 9345979}
+  finalRedImages:
+  - {fileID: 1352986376}
+  - {fileID: 439917509}
+  - {fileID: 1822665581}
+  - {fileID: 1446324781}
+  - {fileID: 320547236}
+  - {fileID: 57581695}
+  - {fileID: 928104372}
+  - {fileID: 440138245}
+  - {fileID: 134421711}
 --- !u!1 &2007339115
 GameObject:
   m_ObjectHideFlags: 0
@@ -6937,3 +7027,4 @@ SceneRoots:
   - {fileID: 96682484}
   - {fileID: 1180863796}
   - {fileID: 1998683747}
+  - {fileID: 1537378430}

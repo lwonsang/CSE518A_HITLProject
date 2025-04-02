@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSelectionController : MonoBehaviour
 {
     public SelectableImage[] imageSlots;
-
+    private List<Question> questionList;
     private KeyCode[] blueKeys = {
         KeyCode.Q, KeyCode.W, KeyCode.E,
         KeyCode.A, KeyCode.S, KeyCode.D,
@@ -83,11 +83,12 @@ public class PlayerSelectionController : MonoBehaviour
             img.ResetSelection();
         }
     }
-    public void SetPlayer(Player p)
+    public void SetPlayer(Player p, List<Question> questions)
     {
         currentPlayer = p;
         submitted = false;
         currentQuestionIndex = 0;
+        questionList = questions;
         LoadNextQuestion();
         //foreach (var img in imageSlots)
         //{
