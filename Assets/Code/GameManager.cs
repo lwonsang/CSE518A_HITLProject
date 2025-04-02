@@ -55,8 +55,8 @@ public class GameManager : MonoBehaviour
     public List<Image> finalBlueImages;
     public List<Image> finalRedImages;
     private Question currentQuestion;
-    private List<Question> blueQuestions;
-    private List<Question> redQuestions;
+    private List<Question> blueQuestions = new List<Question>();
+    private List<Question> redQuestions  = new List<Question>();
     // Start is called before the first frame update
     void Start()
     {
@@ -79,7 +79,38 @@ public class GameManager : MonoBehaviour
     }
     public void RecordPlayerAnswer(PlayerSelectionController.Player player, int questionIndex, List<int> selectedIndices)
     {
+        List<Question> playerQuestions = (player == PlayerSelectionController.Player.Blue) ? blueQuestions : redQuestions;
+        if (questionIndex < 0 || questionIndex >= playerQuestions.Count) return;
+        
+        Question question = playerQuestions[questionIndex];
+        HashSet<int> correctIndices = question.correctIndices;
+        
+        int correctSelections = 0;
+        foreach (int index in selectedIndices)
+        {
+            if (correctIndices.Contains(index))
+            {
+                correctSelections++;
+            }
+        }
 
+        int totalCorrect = correctIndices.Count;
+        int incorrectSelections = selectedIndices.Count - correctSelections;
+        
+        MomentumBar_BG momentumBarBg = FindObjectOfType<MomentumBar_BG>();
+        if (player == PlayerSelectionController.Player.Blue)
+        {
+            momentumBarBg.blueCorrect += correctSelections;
+            momentumBarBg.blueIncorrect += incorrectSelections;
+            momentumBarBg.blueTotal += totalCorrect;
+        }
+        else
+        {
+            momentumBarBg.redCorrect += correctSelections;
+            momentumBarBg.redIncorrect += incorrectSelections;
+            momentumBarBg.redTotal += totalCorrect;
+        }
+        momentumBarBg.UpdateMomentum();
     }
     IEnumerator Countdown(float duration)
     {
@@ -119,13 +150,14 @@ public class GameManager : MonoBehaviour
             yield return WaitWithSkip(2f);
             skipWaiting = false;
             int questionsThisRound = (currentRound == maxRounds) ? 10 : 5;
-            List<Question> blueQuestions = new List<Question>();
-            List<Question> redQuestions = new List<Question>();
+            blueQuestions.Clear();
+            redQuestions.Clear();
             for (int i = 0; i < questionsThisRound; i++)
             {
                 blueQuestions.Add(questionGenerator.GenerateQuestion());
                 redQuestions.Add(questionGenerator.GenerateQuestion());
             }
+
             if (currentRound < maxRounds)
             {
                 if (blueGoesFirst)
@@ -188,7 +220,8 @@ public class GameManager : MonoBehaviour
 
             currentState = GameState.RoundResult;
             ShowOnly(panelRoundResult);
-            scoresText.text = $"Blue: XX% | Red: XX%";
+            MomentumBar_BG momentumBarBg = FindObjectOfType<MomentumBar_BG>();
+            scoresText.text = $"Blue: {Mathf.Round(momentumBarBg.blueScore * 100.0f) * 0.01f}% | Red: {Mathf.Round(momentumBarBg.redScore * 100.0f) * 0.01f}%";
             StartCoroutine(Countdown(3f));
             yield return WaitWithSkip(3f);
             skipWaiting = false;
