@@ -71,7 +71,19 @@ public class QuestionGenerator : MonoBehaviour
         labels = new List<string>();
         labelToImages = new Dictionary<string, List<Sprite>>();
 
-        string[] categories = { "Label-1", "Label-2", "Label-3" };
+        string[] categories = {
+            "Airplane",
+            "Apple",
+            "Banana",
+            "Bear",
+            "Bee",
+            "Bicycle",
+            "Cat",
+            "Dog",
+            "Elephant",
+            "Horse"
+        };
+
         foreach (string label in categories)
         {
             labels.Add(label);
