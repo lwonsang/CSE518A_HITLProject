@@ -1358,7 +1358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b8954eb1fe2641299a2ec2f9f628109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillBar: {fileID: 0}
+  fillBar: {fileID: 523617287}
   timerDuration: 15
 --- !u!1 &366187110
 GameObject:
@@ -3005,7 +3005,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redFill: {fileID: 1283899124}
   blueFill: {fileID: 891272811}
-  momentum: -0.02
+  redCorrect: 0
+  blueCorrect: 0
+  redIncorrect: 0
+  blueIncorrect: 0
+  redTotal: 5
+  blueTotal: 5
+  redScore: 0
+  blueScore: 0
 --- !u!114 &831279537
 MonoBehaviour:
   m_ObjectHideFlags: 0
