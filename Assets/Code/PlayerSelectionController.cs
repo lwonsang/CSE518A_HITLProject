@@ -82,6 +82,7 @@ public class PlayerSelectionController : MonoBehaviour
         {
             img.ResetSelection();
         }
+        Question q = questionList[currentQuestionIndex];
         for (int i = 0; i < imageSlots.Length; i++)
         {
             imageSlots[i].GetComponent<UnityEngine.UI.Image>().sprite = q.images[i];
