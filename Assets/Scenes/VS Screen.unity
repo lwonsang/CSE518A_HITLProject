@@ -915,6 +915,7 @@ MonoBehaviour:
   - {fileID: 655398975}
   - {fileID: 2007339117}
   - {fileID: 9345978}
+  labelText: {fileID: 952336328}
   currentPlayer: 0
   questionsPerRound: 10
 --- !u!1 &210650649
@@ -1358,7 +1359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b8954eb1fe2641299a2ec2f9f628109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fillBar: {fileID: 523617287}
+  fillBar: {fileID: 0}
   timerDuration: 15
 --- !u!1 &366187110
 GameObject:
@@ -2198,6 +2199,7 @@ MonoBehaviour:
   - {fileID: 140119075}
   - {fileID: 601691578}
   - {fileID: 1626022998}
+  labelText: {fileID: 1700407847}
   currentPlayer: 0
   questionsPerRound: 5
 --- !u!1 &601691577
@@ -3009,8 +3011,8 @@ MonoBehaviour:
   blueCorrect: 0
   redIncorrect: 0
   blueIncorrect: 0
-  redTotal: 5
-  blueTotal: 5
+  redTotal: 1
+  blueTotal: 1
   redScore: 0
   blueScore: 0
 --- !u!114 &831279537
@@ -3083,9 +3085,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 831279535}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -300, y: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 300, y: 0}
   m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &891272811
@@ -3115,7 +3117,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 1
+  m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &891272812
@@ -4420,6 +4422,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139806377}
   m_CullTransparentMesh: 1
+--- !u!1 &1163387074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1163387076}
+  - component: {fileID: 1163387075}
+  m_Layer: 0
+  m_Name: LeaderboardManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1163387075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163387074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 173f2125857b14a5a9a1127b2864a92a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerScores: []
+--- !u!4 &1163387076
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163387074}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1180863792
 GameObject:
   m_ObjectHideFlags: 0
@@ -4800,7 +4847,7 @@ MonoBehaviour:
   m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1283899125
@@ -5395,6 +5442,7 @@ MonoBehaviour:
   - {fileID: 634741831}
   - {fileID: 930210198}
   - {fileID: 2037651781}
+  labelText: {fileID: 518433091}
   currentPlayer: 1
   questionsPerRound: 5
 --- !u!1 &1446324778
@@ -6748,6 +6796,7 @@ MonoBehaviour:
   - {fileID: 928104371}
   - {fileID: 440138244}
   - {fileID: 134421710}
+  labelText: {fileID: 1589050665}
   currentPlayer: 1
   questionsPerRound: 10
 --- !u!1 &1998683746
@@ -6847,6 +6896,7 @@ MonoBehaviour:
   - {fileID: 928104372}
   - {fileID: 440138245}
   - {fileID: 134421711}
+  playerScores: []
 --- !u!1 &2007339115
 GameObject:
   m_ObjectHideFlags: 0
@@ -7035,3 +7085,4 @@ SceneRoots:
   - {fileID: 1180863796}
   - {fileID: 1998683747}
   - {fileID: 1537378430}
+  - {fileID: 1163387076}

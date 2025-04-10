@@ -19,19 +19,32 @@ public class MomentumBar_BG : MonoBehaviour
 
     void Update()
     {
-        float normalizedMomentum = (momentum + 1f) / 2f; // Convert to 0 to 1 scale
-        redFill.fillAmount = 1f - normalizedMomentum;
-        blueFill.fillAmount = normalizedMomentum;
-        Debug.Log("Momentum: " + momentum + " | Red Fill: " + redFill.fillAmount + " | Blue Fill: " + blueFill.fillAmount);
+        if (blueTotal <= 1f || redTotal <= 1f)
+        {
+            redFill.fillAmount = 0.5f;
+            blueFill.fillAmount = 0.5f;
+            return;
+        }
+        
+        redFill.fillAmount = 1f - momentum;
+        blueFill.fillAmount = momentum;
+
+        //Debug.Log("Momentum: " + momentum + " | Red Fill: " + redFill.fillAmount + " | Blue Fill: " + blueFill.fillAmount);
     }
     public void UpdateMomentum()
     {
-        redScore = Mathf.Max(0, (redCorrect - redIncorrect) / redTotal) * 100;
-        blueScore = Mathf.Max(0, (blueCorrect - blueIncorrect) / blueTotal) * 100;
+        LeaderboardManager.PlayerScore red = new LeaderboardManager.PlayerScore("Red Team", redCorrect, redIncorrect, redTotal);
+        redScore = red.TotalScore;
+        LeaderboardManager.PlayerScore blue = new LeaderboardManager.PlayerScore("Blue Team", blueCorrect, blueIncorrect, blueTotal);
+        blueScore = blue.TotalScore;
         float totalScore = blueScore + redScore;
         if (totalScore == 0) return;
         momentum = blueScore /  totalScore;
+        // float bluePoints = blueCorrect + redIncorrect;
+        // //float redPoints = redCorrect + blueIncorrect;
+        // float totalScore = blueTotal + redTotal;
+        // momentum = bluePoints  / totalScore;
         Debug.Log("redCorrect " +  redCorrect + " blueCorrect " + blueCorrect + " redIncorrect "  + redIncorrect + " blueIncorrect " + blueIncorrect + " redTotal " + redTotal + " blueTotal " + blueTotal);
-        Debug.Log("momentum " + momentum + " | Red Score: " + redScore + " | Blue Score: " + blueScore);
+        Debug.Log("momentum " + momentum + " | total Score: " + totalScore + " | Red Score: " + redScore + " | Blue Score: " + blueScore);
     }
 }

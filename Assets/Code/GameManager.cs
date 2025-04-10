@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -57,6 +58,8 @@ public class GameManager : MonoBehaviour
     private Question currentQuestion;
     private List<Question> blueQuestions = new List<Question>();
     private List<Question> redQuestions  = new List<Question>();
+
+    public List<LeaderboardManager.PlayerScore> playerScores;
     // Start is called before the first frame update
     void Start()
     {
@@ -222,6 +225,14 @@ public class GameManager : MonoBehaviour
             ShowOnly(panelRoundResult);
             MomentumBar_BG momentumBarBg = FindObjectOfType<MomentumBar_BG>();
             scoresText.text = $"Blue: {Mathf.Round(momentumBarBg.blueScore * 100.0f) * 0.01f}% | Red: {Mathf.Round(momentumBarBg.redScore * 100.0f) * 0.01f}%";
+            if (currentRound == maxRounds)
+            {
+                LeaderboardManager leaderboardManager = FindObjectOfType<LeaderboardManager>();
+                leaderboardManager.playerScores.Add(new LeaderboardManager.PlayerScore("Red Team", momentumBarBg.redCorrect, momentumBarBg.redIncorrect, momentumBarBg.redTotal));
+                leaderboardManager.playerScores.Add(new LeaderboardManager.PlayerScore("Blue Team", momentumBarBg.blueCorrect, momentumBarBg.blueIncorrect, momentumBarBg.blueTotal));
+                playerScores = leaderboardManager.playerScores.OrderByDescending(p=>p.TotalScore).ToList();
+                leaderboardManager.SaveLeaderboard();
+            }
             StartCoroutine(Countdown(3f));
             yield return WaitWithSkip(3f);
             skipWaiting = false;

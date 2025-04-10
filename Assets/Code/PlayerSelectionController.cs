@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerSelectionController : MonoBehaviour
 {
     public SelectableImage[] imageSlots;
     private List<Question> questionList;
+    public TMP_Text labelText;
     private KeyCode[] blueKeys = {
         KeyCode.Q, KeyCode.W, KeyCode.E,
         KeyCode.A, KeyCode.S, KeyCode.D,
@@ -83,9 +86,11 @@ public class PlayerSelectionController : MonoBehaviour
             img.ResetSelection();
         }
         Question q = questionList[currentQuestionIndex];
+        labelText.text =  q.label;
         for (int i = 0; i < imageSlots.Length; i++)
         {
             imageSlots[i].GetComponent<UnityEngine.UI.Image>().sprite = q.images[i];
+            
         }
     }
     public void SetPlayer(Player p, List<Question> questions)
