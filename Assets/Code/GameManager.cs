@@ -228,10 +228,10 @@ public class GameManager : MonoBehaviour
             if (currentRound == maxRounds)
             {
                 LeaderboardManager leaderboardManager = FindObjectOfType<LeaderboardManager>();
-                leaderboardManager.playerScores.Add(new LeaderboardManager.PlayerScore("Red Team", momentumBarBg.redCorrect, momentumBarBg.redIncorrect, momentumBarBg.redTotal));
-                leaderboardManager.playerScores.Add(new LeaderboardManager.PlayerScore("Blue Team", momentumBarBg.blueCorrect, momentumBarBg.blueIncorrect, momentumBarBg.blueTotal));
-                playerScores = leaderboardManager.playerScores.OrderByDescending(p=>p.TotalScore).ToList();
-                leaderboardManager.SaveLeaderboard();
+                LeaderboardManager.PlayerScore redScore = new LeaderboardManager.PlayerScore("Red Team", momentumBarBg.redCorrect, momentumBarBg.redIncorrect, momentumBarBg.redTotal);
+                LeaderboardManager.PlayerScore blueScore = new LeaderboardManager.PlayerScore("Blue Team", momentumBarBg.blueCorrect, momentumBarBg.blueIncorrect, momentumBarBg.blueTotal);
+                leaderboardManager.SaveLeaderboard(redScore);
+                leaderboardManager.SaveLeaderboard(blueScore);
             }
             StartCoroutine(Countdown(3f));
             yield return WaitWithSkip(3f);

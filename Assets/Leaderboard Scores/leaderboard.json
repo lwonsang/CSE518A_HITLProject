@@ -2,15 +2,17 @@
     "playerScores": [
         {
             "playerName": "Red Team",
-            "correctAnswers": 48.0,
+            "correctAnswers": 63.0,
             "incorrectAnswers": 1.0,
-            "totalAnswers": 67.0
+            "totalAnswers": 73.0,
+            "accuracy": 86.3013687133789
         },
         {
             "playerName": "Blue Team",
-            "correctAnswers": 48.0,
+            "correctAnswers": 51.0,
             "incorrectAnswers": 6.0,
-            "totalAnswers": 67.0
+            "totalAnswers": 66.0,
+            "accuracy": 77.2727279663086
         }
     ]
 }
