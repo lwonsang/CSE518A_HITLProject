@@ -113,7 +113,9 @@ public class GameManager : MonoBehaviour
             momentumBarBg.redIncorrect += incorrectSelections;
             momentumBarBg.redTotal += totalCorrect;
         }
-        momentumBarBg.UpdateMomentum();
+        if(currentRound == maxRounds){
+            momentumBarBg.UpdateMomentum();
+        }
     }
     IEnumerator Countdown(float duration)
     {
@@ -224,6 +226,7 @@ public class GameManager : MonoBehaviour
             currentState = GameState.RoundResult;
             ShowOnly(panelRoundResult);
             MomentumBar_BG momentumBarBg = FindObjectOfType<MomentumBar_BG>();
+            momentumBarBg.UpdateMomentum();
             scoresText.text = $"Blue: {Mathf.Round(momentumBarBg.blueScore * 100.0f) * 0.01f}% | Red: {Mathf.Round(momentumBarBg.redScore * 100.0f) * 0.01f}%";
             if (currentRound == maxRounds)
             {

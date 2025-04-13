@@ -16,7 +16,9 @@ public class LeaderboardManager : MonoBehaviour
 
         public float TotalScore
         {
-            get { return Mathf.Max(0, correctAnswers / totalAnswers) * 100; }
+            get { 
+                return Mathf.Max(0, (correctAnswers - incorrectAnswers) / totalAnswers) * 100; 
+            }
         }
 
         public PlayerScore(string name, float correctAnswers, float incorrectAnswers, float totalAnswers)

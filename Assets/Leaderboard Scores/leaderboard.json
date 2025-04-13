@@ -3,9 +3,23 @@
         {
             "playerName": "Red Team",
             "correctAnswers": 63.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 71.0,
+            "accuracy": 88.73239135742188
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 63.0,
             "incorrectAnswers": 1.0,
             "totalAnswers": 73.0,
             "accuracy": 86.3013687133789
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 68.0,
+            "incorrectAnswers": 2.0,
+            "totalAnswers": 77.0,
+            "accuracy": 85.71428680419922
         },
         {
             "playerName": "Blue Team",

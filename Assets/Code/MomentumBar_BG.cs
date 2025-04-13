@@ -19,15 +19,15 @@ public class MomentumBar_BG : MonoBehaviour
 
     void Update()
     {
-        if (blueTotal <= 1f || redTotal <= 1f)
-        {
-            redFill.fillAmount = 0.5f;
-            blueFill.fillAmount = 0.5f;
-            return;
-        }
+        // if (blueTotal <= 1f || redTotal <= 1f)
+        // {
+        //     redFill.fillAmount = 0.5f;
+        //     blueFill.fillAmount = 0.5f;
+        //     return;
+        // }
         
-        redFill.fillAmount = 1f - momentum;
-        blueFill.fillAmount = momentum;
+        // redFill.fillAmount = 1f - momentum;
+        // blueFill.fillAmount = momentum;
 
         //Debug.Log("Momentum: " + momentum + " | Red Fill: " + redFill.fillAmount + " | Blue Fill: " + blueFill.fillAmount);
     }
@@ -40,6 +40,15 @@ public class MomentumBar_BG : MonoBehaviour
         float totalScore = blueScore + redScore;
         if (totalScore == 0) return;
         momentum = blueScore /  totalScore;
+        if (blueTotal <= 1f || redTotal <= 1f)
+        {
+            redFill.fillAmount = 0.5f;
+            blueFill.fillAmount = 0.5f;
+            return;
+        }
+        
+        redFill.fillAmount = 1f - momentum;
+        blueFill.fillAmount = momentum;
         // float bluePoints = blueCorrect + redIncorrect;
         // //float redPoints = redCorrect + blueIncorrect;
         // float totalScore = blueTotal + redTotal;
