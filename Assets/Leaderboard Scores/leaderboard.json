@@ -9,6 +9,20 @@
         },
         {
             "playerName": "Blue Team",
+            "correctAnswers": 59.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 69.0,
+            "accuracy": 85.50724029541016
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 59.0,
+            "incorrectAnswers": 3.0,
+            "totalAnswers": 76.0,
+            "accuracy": 77.63158416748047
+        },
+        {
+            "playerName": "Blue Team",
             "correctAnswers": 51.0,
             "incorrectAnswers": 6.0,
             "totalAnswers": 66.0,
