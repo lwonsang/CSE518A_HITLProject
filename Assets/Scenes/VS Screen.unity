@@ -556,7 +556,7 @@ MonoBehaviour:
   roundNumberText: {fileID: 1449043414}
   winnerText: {fileID: 75998075}
   nextButton: {fileID: 1267351086}
-  scoreboardCanvas: {fileID: 0}
+  scoreboardCanvas: {fileID: 1180863795}
 --- !u!4 &96682484
 Transform:
   m_ObjectHideFlags: 0
@@ -1394,6 +1394,7 @@ RectTransform:
   - {fileID: 1284972448}
   - {fileID: 1014632233}
   - {fileID: 75998074}
+  - {fileID: 1267351085}
   m_Father: {fileID: 1180863796}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2006,8 +2007,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1267351085}
+  m_Children: []
   m_Father: {fileID: 1180863796}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -4680,7 +4680,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1267351085
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4688,13 +4688,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267351084}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 668847383}
-  m_Father: {fileID: 530741109}
+  m_Father: {fileID: 366187111}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -6896,6 +6896,13 @@ MonoBehaviour:
   - {fileID: 928104372}
   - {fileID: 440138245}
   - {fileID: 134421711}
+  redCorrectSelections: 0
+  redIncorrectSelections: 0
+  redTotalCorrect: 0
+  blueCorrectSelections: 0
+  blueIncorrectSelections: 0
+  blueTotalCorrect: 0
+  winner: 
   playerScores: []
 --- !u!1 &2007339115
 GameObject:
