@@ -13,7 +13,7 @@ public class TimerBar : MonoBehaviour
     void Start()
     {
         timer = timerDuration;
-        fillBar.fillAmount = 0f;
+        //fillBar.fillAmount = 0f;
     }
     
     void Update()

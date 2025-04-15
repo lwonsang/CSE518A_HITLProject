@@ -1,6 +1,13 @@
 {
     "playerScores": [
         {
+            "playerName": "Blue Team",
+            "correctAnswers": 68.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 76.0,
+            "accuracy": 89.47368621826172
+        },
+        {
             "playerName": "Red Team",
             "correctAnswers": 63.0,
             "incorrectAnswers": 0.0,
@@ -9,8 +16,22 @@
         },
         {
             "playerName": "Red Team",
+            "correctAnswers": 67.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 76.0,
+            "accuracy": 88.15789031982422
+        },
+        {
+            "playerName": "Red Team",
             "correctAnswers": 63.0,
             "incorrectAnswers": 1.0,
+            "totalAnswers": 73.0,
+            "accuracy": 86.3013687133789
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 63.0,
+            "incorrectAnswers": 0.0,
             "totalAnswers": 73.0,
             "accuracy": 86.3013687133789
         },
@@ -29,6 +50,34 @@
             "accuracy": 85.50724029541016
         },
         {
+            "playerName": "Blue Team",
+            "correctAnswers": 68.0,
+            "incorrectAnswers": 1.0,
+            "totalAnswers": 79.0,
+            "accuracy": 84.81012725830078
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 63.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 78.0,
+            "accuracy": 80.76922607421875
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 54.0,
+            "incorrectAnswers": 1.0,
+            "totalAnswers": 67.0,
+            "accuracy": 79.10447692871094
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 60.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 77.0,
+            "accuracy": 77.92207336425781
+        },
+        {
             "playerName": "Red Team",
             "correctAnswers": 59.0,
             "incorrectAnswers": 3.0,
@@ -41,6 +90,13 @@
             "incorrectAnswers": 6.0,
             "totalAnswers": 66.0,
             "accuracy": 77.2727279663086
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 57.0,
+            "incorrectAnswers": 1.0,
+            "totalAnswers": 73.0,
+            "accuracy": 76.71232604980469
         }
     ]
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameManager : MonoBehaviour
 {
@@ -59,6 +60,15 @@ public class GameManager : MonoBehaviour
     private List<Question> blueQuestions = new List<Question>();
     private List<Question> redQuestions  = new List<Question>();
 
+    public float redCorrectSelections = 0;
+    public float redIncorrectSelections = 0;
+    public float redTotalCorrect = 0;
+    public float blueCorrectSelections = 0;
+    public float blueIncorrectSelections = 0;
+    public float blueTotalCorrect = 0;
+
+    public string winner;
+
     public List<LeaderboardManager.PlayerScore> playerScores;
     // Start is called before the first frame update
     void Start()
@@ -106,13 +116,20 @@ public class GameManager : MonoBehaviour
             momentumBarBg.blueCorrect += correctSelections;
             momentumBarBg.blueIncorrect += incorrectSelections;
             momentumBarBg.blueTotal += totalCorrect;
+            blueCorrectSelections += correctSelections;
+            blueIncorrectSelections += incorrectSelections;
+            blueTotalCorrect += totalCorrect;
         }
         else
         {
             momentumBarBg.redCorrect += correctSelections;
             momentumBarBg.redIncorrect += incorrectSelections;
             momentumBarBg.redTotal += totalCorrect;
+            redCorrectSelections += correctSelections;
+            redIncorrectSelections += incorrectSelections;
+            redTotalCorrect += totalCorrect;
         }
+        
         if(currentRound == maxRounds){
             momentumBarBg.UpdateMomentum();
         }
@@ -146,6 +163,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator GameFlow()
     {
+        MomentumBar_BG momentumBarBg = FindObjectOfType<MomentumBar_BG>();
         while (currentRound <= maxRounds)
         {
             currentState = GameState.RoundIntro;
@@ -225,17 +243,19 @@ public class GameManager : MonoBehaviour
 
             currentState = GameState.RoundResult;
             ShowOnly(panelRoundResult);
-            MomentumBar_BG momentumBarBg = FindObjectOfType<MomentumBar_BG>();
             momentumBarBg.UpdateMomentum();
-            scoresText.text = $"Blue: {Mathf.Round(momentumBarBg.blueScore * 100.0f) * 0.01f}% | Red: {Mathf.Round(momentumBarBg.redScore * 100.0f) * 0.01f}%";
-            if (currentRound == maxRounds)
-            {
-                LeaderboardManager leaderboardManager = FindObjectOfType<LeaderboardManager>();
-                LeaderboardManager.PlayerScore redScore = new LeaderboardManager.PlayerScore("Red Team", momentumBarBg.redCorrect, momentumBarBg.redIncorrect, momentumBarBg.redTotal);
-                LeaderboardManager.PlayerScore blueScore = new LeaderboardManager.PlayerScore("Blue Team", momentumBarBg.blueCorrect, momentumBarBg.blueIncorrect, momentumBarBg.blueTotal);
-                leaderboardManager.SaveLeaderboard(redScore);
-                leaderboardManager.SaveLeaderboard(blueScore);
-            }
+            float redRoundScore = Mathf.Max(0, (redCorrectSelections - redIncorrectSelections) / redTotalCorrect) * 100;
+            float blueRoundScore = Mathf.Max(0, (blueCorrectSelections - blueIncorrectSelections) / blueTotalCorrect) * 100;
+            scoresText.text = $"Round {currentRound} Scores:\nBlue: {Mathf.Round(blueRoundScore * 100) * 0.01}% | Red: {Mathf.Round(redRoundScore * 100) * 0.01}%";
+            Debug.Log("Red Score for Round " + currentRound + ": " + redRoundScore + " | Red Correct Selections: " + redCorrectSelections + ", Red Incorrect Selections: " + redIncorrectSelections + ", Red Total Correct: " + redTotalCorrect);
+            Debug.Log("Blue Score for Round " + currentRound + ": " + blueRoundScore + " | Blue Correct Selections: " + blueCorrectSelections + ", Blue Incorrect Selections: " + blueIncorrectSelections + ", Blue Total Correct: " + blueTotalCorrect);
+
+            redCorrectSelections = 0;
+            redIncorrectSelections = 0;
+            redTotalCorrect = 0;
+            blueCorrectSelections = 0;
+            blueIncorrectSelections = 0;
+            blueTotalCorrect = 0;
             StartCoroutine(Countdown(3f));
             yield return WaitWithSkip(3f);
             skipWaiting = false;
@@ -244,6 +264,20 @@ public class GameManager : MonoBehaviour
         }
 
         currentState = GameState.GameOver;
+        ScoreboardUI scoreboard = FindAnyObjectByType<ScoreboardUI>();
+        
+        LeaderboardManager leaderboardManager = FindObjectOfType<LeaderboardManager>();
+        LeaderboardManager.PlayerScore redScore = new LeaderboardManager.PlayerScore("Red Team", momentumBarBg.redCorrect, momentumBarBg.redIncorrect, momentumBarBg.redTotal);
+        LeaderboardManager.PlayerScore blueScore = new LeaderboardManager.PlayerScore("Blue Team", momentumBarBg.blueCorrect, momentumBarBg.blueIncorrect, momentumBarBg.blueTotal);
+        leaderboardManager.SaveLeaderboard(redScore);
+        leaderboardManager.SaveLeaderboard(blueScore);
+        if(redScore.accuracy > blueScore.accuracy){
+            winner = "Red Team";
+        }
+        else{
+            winner = "Blue Team";
+        }
+        scoreboard.ShowFinalScore(winner, blueScore.accuracy, redScore.accuracy);
         Debug.Log("Game Over. Show final results here.");
     }
     public void ForceEndTurn(PlayerSelectionController.Player who)

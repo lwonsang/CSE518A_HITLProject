@@ -20,6 +20,7 @@ public class ScoreboardUI : MonoBehaviour
         // Set initial UI state
         scoreboardCanvas.gameObject.SetActive(false);
         nextButton.onClick.AddListener(OnNextButtonClick);
+        nextButton.gameObject.SetActive(false);
         
         // Display the round number at the start
         UpdateRoundUI();
@@ -33,13 +34,14 @@ public class ScoreboardUI : MonoBehaviour
 
     public void ShowFinalScore(string winner, float bluePercentage, float redPercentage)
     {
+        scoreboardCanvas.gameObject.SetActive(true);
         // Hide the round number text
         roundNumberText.gameObject.SetActive(false);
 
         // Show final results
         winnerText.gameObject.SetActive(true);
         winnerText.text = $"{winner} Wins!\n\nBlue: {bluePercentage:F2}%\nRed: {redPercentage:F2}%";
-
+        nextButton.gameObject.SetActive(true);
         gameOver = true; // Mark the game as over
     }
 
