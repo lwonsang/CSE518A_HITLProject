@@ -2,6 +2,118 @@
     "playerScores": [
         {
             "playerName": "Blue Team",
+            "correctAnswers": 26.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 26.0,
+            "accuracy": 100.0
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 13.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 13.0,
+            "accuracy": 100.0
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 10.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 10.0,
+            "accuracy": 100.0
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 12.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 12.0,
+            "accuracy": 100.0
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 13.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 13.0,
+            "accuracy": 100.0
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 26.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 26.0,
+            "accuracy": 100.0
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 12.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 12.0,
+            "accuracy": 100.0
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 13.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 13.0,
+            "accuracy": 100.0
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 12.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 12.0,
+            "accuracy": 100.0
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 14.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 15.0,
+            "accuracy": 93.33333587646485
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 12.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 13.0,
+            "accuracy": 92.30769348144531
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 12.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 13.0,
+            "accuracy": 92.30769348144531
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 35.0,
+            "incorrectAnswers": 1.0,
+            "totalAnswers": 37.0,
+            "accuracy": 91.89189147949219
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 10.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 11.0,
+            "accuracy": 90.90909576416016
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 10.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 11.0,
+            "accuracy": 90.90909576416016
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 38.0,
+            "incorrectAnswers": 2.0,
+            "totalAnswers": 40.0,
+            "accuracy": 90.0
+        },
+        {
+            "playerName": "Blue Team",
             "correctAnswers": 68.0,
             "incorrectAnswers": 0.0,
             "totalAnswers": 76.0,
@@ -16,10 +128,45 @@
         },
         {
             "playerName": "Red Team",
+            "correctAnswers": 24.0,
+            "incorrectAnswers": 1.0,
+            "totalAnswers": 26.0,
+            "accuracy": 88.46153259277344
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 24.0,
+            "incorrectAnswers": 1.0,
+            "totalAnswers": 26.0,
+            "accuracy": 88.46153259277344
+        },
+        {
+            "playerName": "Red Team",
             "correctAnswers": 67.0,
             "incorrectAnswers": 0.0,
             "totalAnswers": 76.0,
             "accuracy": 88.15789031982422
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 21.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 24.0,
+            "accuracy": 87.5
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 20.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 23.0,
+            "accuracy": 86.9565200805664
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 63.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 73.0,
+            "accuracy": 86.3013687133789
         },
         {
             "playerName": "Red Team",
@@ -29,11 +176,18 @@
             "accuracy": 86.3013687133789
         },
         {
-            "playerName": "Blue Team",
-            "correctAnswers": 63.0,
-            "incorrectAnswers": 0.0,
-            "totalAnswers": 73.0,
-            "accuracy": 86.3013687133789
+            "playerName": "Red Team",
+            "correctAnswers": 46.0,
+            "incorrectAnswers": 2.0,
+            "totalAnswers": 51.0,
+            "accuracy": 86.2745132446289
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 45.0,
+            "incorrectAnswers": 2.0,
+            "totalAnswers": 50.0,
+            "accuracy": 86.0
         },
         {
             "playerName": "Blue Team",
@@ -62,6 +216,13 @@
             "incorrectAnswers": 0.0,
             "totalAnswers": 78.0,
             "accuracy": 80.76922607421875
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 20.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 25.0,
+            "accuracy": 80.0
         },
         {
             "playerName": "Red Team",
@@ -97,6 +258,111 @@
             "incorrectAnswers": 1.0,
             "totalAnswers": 73.0,
             "accuracy": 76.71232604980469
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 9.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 12.0,
+            "accuracy": 75.0
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 8.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 11.0,
+            "accuracy": 72.7272720336914
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 8.0,
+            "incorrectAnswers": 0.0,
+            "totalAnswers": 11.0,
+            "accuracy": 72.7272720336914
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 14.0,
+            "incorrectAnswers": 4.0,
+            "totalAnswers": 17.0,
+            "accuracy": 58.82353210449219
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 18.0,
+            "incorrectAnswers": 10.0,
+            "totalAnswers": 26.0,
+            "accuracy": 30.76923179626465
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 0.0,
+            "incorrectAnswers": 9.0,
+            "totalAnswers": 5.0,
+            "accuracy": 0.0
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 2.0,
+            "incorrectAnswers": 11.0,
+            "totalAnswers": 7.0,
+            "accuracy": 0.0
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 0.0,
+            "incorrectAnswers": 5.0,
+            "totalAnswers": 3.0,
+            "accuracy": 0.0
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 16.0,
+            "incorrectAnswers": 16.0,
+            "totalAnswers": 24.0,
+            "accuracy": 0.0
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 10.0,
+            "incorrectAnswers": 14.0,
+            "totalAnswers": 15.0,
+            "accuracy": 0.0
+        },
+        {
+            "playerName": "Blue Team",
+            "correctAnswers": 13.0,
+            "incorrectAnswers": 13.0,
+            "totalAnswers": 18.0,
+            "accuracy": 0.0
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 0.0,
+            "incorrectAnswers": 9.0,
+            "totalAnswers": 5.0,
+            "accuracy": 0.0
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 0.0,
+            "incorrectAnswers": 11.0,
+            "totalAnswers": 5.0,
+            "accuracy": 0.0
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 7.0,
+            "incorrectAnswers": 10.0,
+            "totalAnswers": 14.0,
+            "accuracy": 0.0
+        },
+        {
+            "playerName": "Red Team",
+            "correctAnswers": 0.0,
+            "incorrectAnswers": 10.0,
+            "totalAnswers": 9.0,
+            "accuracy": 0.0
         }
     ]
 }

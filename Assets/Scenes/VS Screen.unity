@@ -3015,6 +3015,11 @@ MonoBehaviour:
   blueTotal: 1
   redScore: 0
   blueScore: 0
+  totalScore: 0
+  redBonus: 0
+  blueBonus: 0
+  momentum: 0
+  maxMomentum: 10
 --- !u!114 &831279537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4561,12 +4566,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 530741109}
   - {fileID: 1349418730}
   - {fileID: 750831486}
   - {fileID: 1462350669}
   - {fileID: 366187111}
   - {fileID: 1518210976}
+  - {fileID: 530741109}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6902,6 +6907,12 @@ MonoBehaviour:
   blueCorrectSelections: 0
   blueIncorrectSelections: 0
   blueTotalCorrect: 0
+  redCorrect: 0
+  redIncorrect: 0
+  redTotal: 0
+  blueCorrect: 0
+  blueIncorrect: 0
+  blueTotal: 0
   winner: 
   playerScores: []
 --- !u!1 &2007339115
