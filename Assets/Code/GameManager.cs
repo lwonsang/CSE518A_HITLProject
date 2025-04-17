@@ -315,7 +315,7 @@ public class GameManager : MonoBehaviour
            blueTotalCorrect = 0;
            CheckForGameEnd(momentumBarBg);
            if(gameEndedEarly) {
-            GameEnded();
+            // GameEnded();
             yield break;
            }
            else{
@@ -463,6 +463,28 @@ public class GameManager : MonoBehaviour
    public void CheckForGameEnd(MomentumBar_BG momentumBar_BG){
        if(momentumBar_BG.redTotal > 0 && momentumBar_BG.blueTotal > 0 && (momentumBar_BG.totalScore >= momentumBar_BG.maxMomentum || momentumBar_BG.totalScore <= -momentumBar_BG.maxMomentum)){
            gameEndedEarly = true;
+           currentState = GameState.GameOver;
+            ScoreboardUI scoreboard = FindAnyObjectByType<ScoreboardUI>();
+            redCorrect += redCorrectSelections;
+            redIncorrect += redIncorrectSelections;
+            redTotal += redTotalCorrect;
+            blueCorrect += blueCorrectSelections;
+            blueIncorrect += blueIncorrectSelections;
+            blueTotal += blueTotalCorrect;
+            Debug.Log("Total Scores: redCorrect " +  redCorrect + " blueCorrect " + blueCorrect + " redIncorrect "  + redIncorrect + " blueIncorrect " + blueIncorrect + " redTotal " + redTotal + " blueTotal " + blueTotal);
+            
+            LeaderboardManager leaderboardManager = FindObjectOfType<LeaderboardManager>();
+            LeaderboardManager.PlayerScore redScore = new LeaderboardManager.PlayerScore("Red Team", redCorrect, redIncorrect, redTotal);
+            LeaderboardManager.PlayerScore blueScore = new LeaderboardManager.PlayerScore("Blue Team", blueCorrect, blueIncorrect, blueTotal);
+            leaderboardManager.SaveLeaderboard(redScore);
+            leaderboardManager.SaveLeaderboard(blueScore);
+            if(momentumBar_BG.totalScore < 0){
+                winner = "Momentum: Red Team";
+            }
+            else{
+                winner = "Momentum: Blue Team";
+            }
+            scoreboard.ShowFinalScore(winner, blueScore.accuracy, redScore.accuracy);
        }
       
    }
