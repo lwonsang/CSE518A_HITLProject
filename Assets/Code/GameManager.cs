@@ -153,10 +153,10 @@ public class GameManager : MonoBehaviour
            }
        }
       
-       // if(currentRound == maxRounds){
-       //     momentumBarBg.UpdateMomentum();
-       // }
-       momentumBarBg.UpdateMomentum();
+        if(currentRound == maxRounds){
+           momentumBarBg.UpdateMomentum();
+       }
+       //momentumBarBg.UpdateMomentum();
        CheckForGameEnd(momentumBarBg);
    }
    IEnumerator Countdown(float duration)
@@ -196,6 +196,7 @@ public class GameManager : MonoBehaviour
        {
            currentState = GameState.RoundIntro;
            momentumBarBg.DetermineMaxMomentum(currentRound);
+            /*
            momentumBarBg.redCorrect = 0;
            momentumBarBg.blueCorrect = 0;
            momentumBarBg.redIncorrect = 0;
@@ -204,6 +205,7 @@ public class GameManager : MonoBehaviour
            momentumBarBg.blueTotal = 0;
            momentumBarBg.redBonus = 0;
            momentumBarBg.blueBonus = 0;
+            */
            ShowOnly(panelRoundIntro);
            roundNumberText.text = $"Round {currentRound}";
            StartCoroutine(Countdown(2f));
