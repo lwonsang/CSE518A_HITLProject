@@ -5,7 +5,18 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SocialPlatforms.Impl;
+[System.Serializable]
+public class PseudoLabelEntry
+{
+    public string image;
+    public bool correct;
+}
 
+[System.Serializable]
+public class PseudoLabelEntryArray
+{
+    public PseudoLabelEntry[] array;
+}
 public class GameManager : MonoBehaviour
 {
     private enum GameState
@@ -45,8 +56,8 @@ public class GameManager : MonoBehaviour
    private bool redSubmitted = false;
    private bool gameEndedEarly = false;
 
-
-   public QuestionGenerator questionGenerator;
+    private Dictionary<string, bool> pseudoLabelCorrectMap = new Dictionary<string, bool>();
+    public QuestionGenerator questionGenerator;
 
 
    [Header("Question UI")]
@@ -100,9 +111,36 @@ public class GameManager : MonoBehaviour
    }
    void Awake()
    {
-       Instance = this;
+        LoadPseudoLabels();
+        Instance = this;
    }
-   public void OnPlayerFinished(PlayerSelectionController.Player player)
+    private void LoadPseudoLabels()
+    {
+        TextAsset jsonFile = Resources.Load<TextAsset>("pseudo_labels_subset");
+        if (jsonFile == null)
+        {
+            Debug.LogError("pseudo_labels_subset.json not found in Resources!");
+            return;
+        }
+
+        try
+        {
+            PseudoLabelEntryArray data = JsonUtility.FromJson<PseudoLabelEntryArray>(jsonFile.text);
+            foreach (var entry in data.array)
+            {
+                string cleanedName = System.IO.Path.GetFileNameWithoutExtension(entry.image);
+                //pseudoLabelCorrectMap[entry.image] = entry.correct;
+                pseudoLabelCorrectMap[cleanedName] = entry.correct;
+            }
+
+            Debug.Log($"Loaded {pseudoLabelCorrectMap.Count} pseudo label entries.");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError("Failed to parse pseudo_labels_subset.json: " + e.Message);
+        }
+    }
+    public void OnPlayerFinished(PlayerSelectionController.Player player)
    {
        Debug.Log($"{player} finished answering.");
    }
@@ -115,16 +153,25 @@ public class GameManager : MonoBehaviour
        HashSet<int> correctIndices = question.correctIndices;
       
        int correctSelections = 0;
-       foreach (int index in selectedIndices)
-       {
-           if (correctIndices.Contains(index))
-           {
-               correctSelections++;
-           }
-       }
+        /*foreach (int index in selectedIndices)
+        {
+        if (correctIndices.Contains(index))
+        {
+        correctSelections++;
+        }
+        }*/
+        foreach (int index in selectedIndices)
+        {
+            string imageName = question.imageNames[index];
+            bool isPseudoWrong = pseudoLabelCorrectMap.ContainsKey(imageName) && !pseudoLabelCorrectMap[imageName];
+            Debug.Log($"{imageName} -> correct: {pseudoLabelCorrectMap[imageName]}");
+            if (correctIndices.Contains(index) && !isPseudoWrong)
+            {
+                correctSelections++;
+            }
+        }
 
-
-       int totalCorrect = correctIndices.Count;
+        int totalCorrect = correctIndices.Count;
        int incorrectSelections = selectedIndices.Count - correctSelections;
       
        MomentumBar_BG momentumBarBg = FindObjectOfType<MomentumBar_BG>();

@@ -6,7 +6,7 @@ public class QuestionGenerator : MonoBehaviour
 {
     public List<string> labels; 
     public Dictionary<string, List<Sprite>> labelToImages;
-
+    //public Dictionary<string, List<(Sprite, string)>> labelToImages = new Dictionary<string, List<(Sprite, string)>>();
     public Question GenerateQuestion()
     {
         Question q = new Question();
@@ -17,12 +17,14 @@ public class QuestionGenerator : MonoBehaviour
         int correctCount = Random.Range(2, 4); 
         q.correctIndices = new HashSet<int>();
         q.images = new List<Sprite>();
+        q.imageNames = new List<string>();
 
         for (int i = 0; i < correctCount; i++)
         {
             Sprite correct = correctList[Random.Range(0, correctList.Count)];
             q.correctIndices.Add(q.images.Count);
             q.images.Add(correct);
+            q.imageNames.Add(correct.name);
         }
 
         while (q.images.Count < 9)
@@ -36,6 +38,7 @@ public class QuestionGenerator : MonoBehaviour
             List<Sprite> otherList = labelToImages[otherLabel];
             Sprite other = otherList[Random.Range(0, otherList.Count)];
             q.images.Add(other);
+            q.imageNames.Add(other.name);
         }
 
         Shuffle(q.images, q.correctIndices);
@@ -72,22 +75,22 @@ public class QuestionGenerator : MonoBehaviour
         labelToImages = new Dictionary<string, List<Sprite>>();
 
         string[] categories = {
-            "Airplane",
-            "Apple",
-            "Banana",
-            "Bear",
-            "Bee",
-            "Bicycle",
-            "Cat",
-            "Dog",
-            "Elephant",
-            "Horse"
+            "albatross",
+            "goldfish",
+            "hummingbird",
+            "macaw",
+            "peacock",
+            "sea lion",
+            "snail",
+            "spoonbill",
+            "tick",
+            "toucan"
         };
 
         foreach (string label in categories)
         {
             labels.Add(label);
-            Sprite[] sprites = Resources.LoadAll<Sprite>("Images/" + label);
+            Sprite[] sprites = Resources.LoadAll<Sprite>("PseudoDataset/" + label);
             labelToImages[label] = new List<Sprite>(sprites);
         }
     }
